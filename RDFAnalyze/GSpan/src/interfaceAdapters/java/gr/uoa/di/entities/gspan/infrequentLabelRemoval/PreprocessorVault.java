@@ -1,0 +1,22 @@
+package interfaceAdapters.java.gr.uoa.di.entities.gspan.infrequentLabelRemoval;
+
+import java.io.IOException;
+
+import gr.uoa.di.interfaceAdapters.controllers.dataVault.object.ObjectVault;
+import main.java.gr.uoa.di.entities.gspan.infrequentLabelRemoval.GSPanPreprocessor;
+
+public class PreprocessorVault extends ObjectVault<GSPanPreprocessor> {
+
+	public static PreprocessorVault create(String dataFile) throws IOException {
+		return new PreprocessorVault(dataFile);
+	}
+
+	private PreprocessorVault(String dataFile) throws IOException {
+		super.initialize(dataFile, GSPanPreprocessor.class);
+	}
+
+	@Override
+	public void addSerializersDeserializers() {
+		builder.registerTypeAdapter(GSPanPreprocessor.class, new _PreprocessorDeserializer());
+	}
+}
